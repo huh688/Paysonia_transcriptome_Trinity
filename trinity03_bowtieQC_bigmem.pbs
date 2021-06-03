@@ -1,0 +1,85 @@
+#!/bin/bash
+#PBS -q batch
+#   specify the queue batch, express or bigmem
+#PBS -l nodes=1:ppn=12
+#   request 1 processor on 1 node
+#PBS -l walltime=120:00:00
+#   choose a walltime slightly longer than your job will take
+#PBS -j oe
+
+module load bowtie2/2.3.4 samtools/1.6 zlib/1.2.8
+
+cd $PBS_O_WORKDIR
+
+cd /scratch/haohu/Paysonia/05_trinity_bigmem/bowtieQC
+
+bowtie2-build /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21065-10wk2_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21065-10wk2_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21065-10wk2.bam > align_stats_21065.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21066-10wk3_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21066-10wk3_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21066-10wk3.bam > align_stats_21066.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21067-10wk4_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21067-10wk4_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21067-10wk4.bam > align_stats_21067.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21068-10wk6_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21068-10wk6_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21068-10wk6.bam > align_stats_21068.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21069-16wk2_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21069-16wk2_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21069-16wk2.bam > align_stats_21069.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21070-16wk3_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21070-16wk3_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21070-16wk3.bam > align_stats_21070.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21071-16wk4_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21071-16wk4_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21071-16wk4.bam > align_stats_21071.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21072-16wk6_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21072-16wk6_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21072-16wk6.bam > align_stats_21072.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21073-15wk2_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21073-15wk2_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21073-15wk2.bam > align_stats_21073.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21074-15wk3_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21074-15wk3_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21074-15wk3.bam > align_stats_21074.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21075-15wk4_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21075-15wk4_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21075-15wk4.bam > align_stats_21075.txt
+
+bowtie2 -p 24 -q --no-unal -k 20 -x /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta -1 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21076-15wk6_R1_paired_sortmerna_filtered.fastq.gz -2 /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs/21076-15wk6_R2_paired_sortmerna_filtered.fastq.gz  \
+     | samtools view -@24 -Sb -o 21076-15wk6.bam > align_stats_21076.txt
+
+# sort the alignments by coordinate
+samtools sort -@24 21065-10wk2.bam -o 21065-10wk2.coordSorted.bam
+samtools sort -@24 21066-10wk3.bam -o 21066-10wk3.coordSorted.bam
+samtools sort -@24 21067-10wk4.bam -o 21067-10wk4.coordSorted.bam
+samtools sort -@24 21068-10wk6.bam -o 21068-10wk6.coordSorted.bam
+samtools sort -@24 21069-16wk2.bam -o 21069-16wk2.coordSorted.bam
+samtools sort -@24 21070-16wk3.bam -o 21070-16wk3.coordSorted.bam
+samtools sort -@24 21071-16wk4.bam -o 21071-16wk4.coordSorted.bam
+samtools sort -@24 21072-16wk6.bam -o 21072-16wk6.coordSorted.bam
+samtools sort -@24 21073-15wk2.bam -o 21073-15wk2.coordSorted.bam
+samtools sort -@24 21074-15wk3.bam -o 21074-15wk3.coordSorted.bam
+samtools sort -@24 21075-15wk4.bam -o 21075-15wk4.coordSorted.bam
+samtools sort -@24 21076-15wk6.bam -o 21076-15wk6.coordSorted.bam
+
+# index the coordinate-sorted bam file
+samtools index 21065-10wk2.coordSorted.bam
+samtools index 21066-10wk3.coordSorted.bam
+samtools index 21067-10wk4.coordSorted.bam
+samtools index 21068-10wk6.coordSorted.bam
+samtools index 21069-16wk2.coordSorted.bam
+samtools index 21070-16wk3.coordSorted.bam
+samtools index 21071-16wk4.coordSorted.bam
+samtools index 21072-16wk6.coordSorted.bam
+samtools index 21073-15wk2.coordSorted.bam
+samtools index 21074-15wk3.coordSorted.bam
+samtools index 21075-15wk4.coordSorted.bam
+samtools index 21076-15wk6.coordSorted.bam
+
+# index the Trinity.fasta file
+samtools faidx /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta
+
+samtools faidx /scratch/haohu/Paysonia/05_trinity/Trinity_longest.fasta

@@ -1,0 +1,15 @@
+#!/bin/bash
+#PBS -q express
+#   specify the queue batch, express or bigmem
+#PBS -l nodes=1:ppn=2
+#   request 1 processor on 1 node
+#PBS -l walltime=1:00:00
+#   choose a walltime slightly longer than your job will take
+#PBS -j oe
+
+module load blast+/2.7.1
+
+cd $PBS_O_WORKDIR
+
+cd /scratch/haohu/Paysonia/05_trinity_bigmem
+

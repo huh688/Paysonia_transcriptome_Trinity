@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -q batch
+#   specify the queue batch, express or bigmem
+#PBS -l nodes=1:ppn=12
+#   request 1 processor on 1 node
+#PBS -l walltime=6:00:00
+#   choose a walltime slightly longer than your job will take
+#PBS -j oe
+
+
+module load blast+/2.7.1
+
+cd $PBS_O_WORKDIR
+
+cd /scratch/haohu/Paysonia/05_trinity_bigmem
+
+blastp -query /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta.transdecoder.pep -db /scratch/haohu/db/Athaliana_447_Araport11.db.fasta -num_threads 12 -max_target_seqs 1 -max_hsps 1 -outfmt 6 -evalue 1e-6 -out transdecoder.pep.fasta.blastp.Araport11.db.out

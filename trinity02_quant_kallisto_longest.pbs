@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -q batch
+#   specify the queue batch, express or bigmem
+#PBS -l nodes=1:ppn=12
+#   request 1 processor on 1 node
+#PBS -l walltime=120:00:00
+#   choose a walltime slightly longer than your job will take
+#PBS -j oe
+
+module load samtools/1.6
+
+cd $PBS_O_WORKDIR
+
+cd /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs_kallisto_longest/
+
+perl /scratch/haohu/bin/trinity-2.6.6/util/align_and_estimate_abundance.pl --transcripts /scratch/haohu/Paysonia/05_trinity_bigmem/Trinity.longest.fasta --seqType fq --samples_file samples.txt --est_method kallisto --trinity_mode --prep_reference --thread_count 24 --output_dir /scratch/haohu/Paysonia/kallisto_longest/

@@ -1,0 +1,30 @@
+#!/bin/bash
+#PBS -q batch
+#   specify the queue batch, express or bigmem
+#PBS -l nodes=1:ppn=12
+#   request 1 processor on 1 node
+#PBS -l walltime=120:00:00
+#   choose a walltime slightly longer than your job will take
+#PBS -j oe
+
+module load blast+/2.7.1
+
+cd $PBS_O_WORKDIR
+
+cd /scratch/haohu/Paysonia/05_trinity_bigmem
+
+
+# blastx trinity output to uniprotkb_viridiplantae_103017
+
+# blastx -query Trinity.longest.fasta -db /scratch/haohu/db/uniprotkb_viridiplantae_103017 -num_threads 12 -max_target_seqs 1 -outfmt 6 -evalue 1e-6 -out trinity.longest.blastx.uniprotkb.out
+
+# blastx trinity output to nr.viridiplantae.fa
+
+# blastx -query Trinity.longest.fasta -db /scratch/haohu/db/nr.viridiplantae.fa -num_threads 12 -max_target_seqs 1 -outfmt 6 -evalue 1e-6 -out trinity.longest.blastx.nr.viridiplantae.out
+
+# blastp transdecoder peptide output to uniprotkb_viridiplantae_103017
+
+ blastp -query Trinity.longest.fasta.transdecoder.pep -db /scratch/haohu/db/uniprotkb_viridiplantae_103017 -num_threads 12 -max_target_seqs 1 -max_hsps 1 -outfmt 6 -evalue 1e-6 -out transdecoder.pep.blastp.uniprotkb.out
+
+# blastp transdecoder peptide output to nr.viridiplantae.fa
+# blastp -query Trinity.longest.fasta.transdecoder.pep -db /scratch/haohu/db/nr.viridiplantae.fa -num_threads 12 -max_target_seqs 1 -outfmt 6 -evalue 1e-6 -out transdecoder.pep.blastp.nr.viridiplantae.out

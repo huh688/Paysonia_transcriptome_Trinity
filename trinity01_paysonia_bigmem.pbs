@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -q bigmem
+#   specify the queue batch, express or bigmem
+#PBS -l nodes=1:ppn=12
+#   request 1 processor on 1 node
+#PBS -l walltime=120:00:00
+#   choose a walltime slightly longer than your job will take
+#PBS -j oe
+
+module load jdk/1.8.0_112 jellyfish/2.2.6 samtools/1.6 bowtie2/2.3.4
+
+cd $PBS_O_WORKDIR
+
+cd /scratch/haohu/Paysonia/04_rRNA_filtering/filtered_outputs
+
+/scratch/haohu/bin/trinity-2.6.6/Trinity --seqType fq --max_memory 256G --samples_file samples.txt --min_contig_length 200 --CPU 24 --verbose --output /scratch/haohu/Paysonia/05_trinity_bigmem
+
