@@ -1,4 +1,4 @@
-#Transcriptomic analysis of seed development in Paysonia auriculata (Brassicaceae) identifies genes involved in hydroxy fatty acid biosynthesis and seed maturation
+Transcriptomic analysis of seed development in Paysonia auriculata (Brassicaceae) identifies genes involved in hydroxy fatty acid biosynthesis and seed maturation
 
 Hao Hu, Armond Swift, Margarita Mauro-Herrera, James Borrone, Guadalupe Borja, Andrew N. Doust
 
